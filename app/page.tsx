@@ -66,6 +66,13 @@ export default function Home() {
         key={index}
         className="bg-[#FDF6EE] p-4 rounded-2xl shadow"
       >
+  {crystal.image && (
+    <img
+      src={crystal.image}
+      alt={crystal.name}
+      className="w-full h-56 object-cover rounded-xl mb-4"
+    />
+  )}
         <h3 className="text-xl font-bold mb-2">
           ✨ {crystal.name} ({crystal.chineseName})
         </h3>
