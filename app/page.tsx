@@ -73,7 +73,7 @@ export default function Home() {
             <img
               src={inventoryCrystal.image}
               alt={crystal.name}
-              className="w-full h-56 object-cover rounded-xl mb-4"
+              className="w-full h-auto rounded-xl mb-4"
             />
           )}
 
@@ -125,3 +125,4 @@ export default function Home() {
     </div>
   </main>
 );
+}
