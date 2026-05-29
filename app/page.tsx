@@ -1,5 +1,5 @@
 "use client";
-
+import { crystalInventory } from "../lib/crystalInventory";
 import { useState } from "react";
 
 export default function Home() {
@@ -51,59 +51,63 @@ export default function Home() {
         </button>
 
   
-
-
-
 {result && (
   <div className="space-y-4">
-
     <h2 className="text-2xl font-bold">
       AI Recommendation
     </h2>
 
-    {result.crystals?.map((crystal: any, index: number) => (
-      <div
-        key={index}
-        className="bg-[#FDF6EE] p-4 rounded-2xl shadow"
-      >
-  {crystal.image && (
-    <img
-      src={crystal.image}
-      alt={crystal.name}
-      className="w-full h-56 object-cover rounded-xl mb-4"
-    />
-  )}
-        <h3 className="text-xl font-bold mb-2">
-          ✨ {crystal.name} ({crystal.chineseName})
-        </h3>
+    {result.crystals?.map((crystal: any, index: number) => {
+      const inventoryCrystal = crystalInventory.find(
+        (item) =>
+          item.name.toLowerCase() === crystal.name?.toLowerCase() ||
+          item.chineseName === crystal.chineseName
+      );
 
-        <p>
-          <span className="font-semibold">Meaning:</span>{" "}
-          {crystal.meaning}
-        </p>
+      return (
+        <div
+          key={index}
+          className="bg-[#FDF6EE] p-4 rounded-2xl shadow"
+        >
+          {inventoryCrystal?.image && (
+            <img
+              src={inventoryCrystal.image}
+              alt={crystal.name}
+              className="w-full h-56 object-cover rounded-xl mb-4"
+            />
+          )}
 
-        <p>
-          <span className="font-semibold">Color:</span>{" "}
-          {crystal.color}
-        </p>
-<p>
-  <span className="font-semibold">Why recommended:</span>{" "}
-  {crystal.whyRecommended}
-</p>
+          <h3 className="text-xl font-bold mb-2">
+            ✨ {crystal.name} ({crystal.chineseName})
+          </h3>
 
-<p>
-  <span className="font-semibold">Energy:</span>{" "}
-  {crystal.energyKeywords?.join(", ")}
-</p>
+          <p>
+            <span className="font-semibold">Meaning:</span>{" "}
+            {crystal.meaning}
+          </p>
 
-<p>
-  <span className="font-semibold">How to use:</span>{" "}
-  {crystal.howToUse}
-</p>
+          <p>
+            <span className="font-semibold">Color:</span>{" "}
+            {crystal.color}
+          </p>
 
+          <p>
+            <span className="font-semibold">Why recommended:</span>{" "}
+            {crystal.whyRecommended}
+          </p>
 
-      </div>
-    ))}
+          <p>
+            <span className="font-semibold">Energy:</span>{" "}
+            {crystal.energyKeywords?.join(", ")}
+          </p>
+
+          <p>
+            <span className="font-semibold">How to use:</span>{" "}
+            {crystal.howToUse}
+          </p>
+        </div>
+      );
+    })}
 
     <div className="bg-white p-4 rounded-2xl border">
       <p className="mb-2">
@@ -115,11 +119,9 @@ export default function Home() {
         "{result.affirmation}"
       </p>
     </div>
-  </div>
-)}      
+    </div>
+  )}
 
-
-      </div>
-    </main>
-  );
-}
+    </div>
+  </main>
+);
