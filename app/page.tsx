@@ -26,13 +26,23 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#F8F1E9] flex items-center justify-center p-8">
-      <div className="bg-white rounded-3xl shadow-lg p-8 max-w-lg w-full">
-        <h1 className="text-3xl font-bold text-center mb-4">
-          AI CUSTOM RECOMMEND
-        </h1>
+      <div className="bg-white rounded-3xl shadow-lg p-6 max-w-2xl w-full">
+      <div className="flex justify-center mb-4">
+        <img
+          src="/logo.png"
+          alt="Glint & Moon"
+          className="w-[450px] object-contain"
+        />
+      </div>
+
+        <p className="text-center text-gray-600 mb-4">
+          Personalized crystal guidance for clarity, balance, and growth.
+        </p>
+
+
 
         <p className="text-center text-gray-600 mb-6">
-          Tell us your needs, and AI will recommend the perfect crystals for you
+          Describe your feelings, goals, or the energy you wish to invite into your life...
         </p>
 
         <textarea
@@ -50,6 +60,19 @@ export default function Home() {
           {loading ? "Generating..." : "Enter AI Custom"}
         </button>
 
+        <div className="text-sm text-gray-500 bg-[#FDF6EE] p-4 rounded-xl mb-6">
+          Share your current feelings, challenges, or intentions.
+          <br /><br />
+          Examples:
+          <br />
+          • I want more confidence and motivation.
+          <br />
+          • I've been feeling anxious and overwhelmed lately.
+          <br />
+          • I'm starting a new chapter in my life and want positive energy.
+          <br />
+          • I want to attract love, abundance, and inner peace.
+        </div>
   
 {result && (
   <div className="space-y-4">
@@ -69,13 +92,7 @@ export default function Home() {
           key={index}
           className="bg-[#FDF6EE] p-4 rounded-2xl shadow"
         >
-          {inventoryCrystal?.image && (
-            <img
-              src={inventoryCrystal.image}
-              alt={crystal.name}
-              className="w-full h-auto rounded-xl mb-4"
-            />
-          )}
+
 
           <h3 className="text-xl font-bold mb-2">
             ✨ {crystal.name} ({crystal.chineseName})
@@ -105,6 +122,19 @@ export default function Home() {
             <span className="font-semibold">How to use:</span>{" "}
             {crystal.howToUse}
           </p>
+
+          <p>
+            <span className="font-semibold">How to use:</span>{" "}
+            {crystal.howToUse}
+          </p>
+
+          {inventoryCrystal?.image && (
+            <img
+              src={inventoryCrystal.image}
+              alt={crystal.name}
+              className="w-full object-contain rounded-xl mt-4"
+            />
+          )}
         </div>
       );
     })}
